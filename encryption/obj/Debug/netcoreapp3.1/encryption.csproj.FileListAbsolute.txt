@@ -1,0 +1,13 @@
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.csproj.AssemblyReference.cache
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.AssemblyInfoInputs.cache
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.AssemblyInfo.cs
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.csproj.CoreCompileInputs.cache
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.exe
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.deps.json
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.runtimeconfig.json
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.runtimeconfig.dev.json
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.dll
+C:\Working Projects\Coding\encryption\encryption\bin\Debug\netcoreapp3.1\encryption.pdb
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.dll
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.pdb
+C:\Working Projects\Coding\encryption\encryption\obj\Debug\netcoreapp3.1\encryption.genruntimeconfig.cache
