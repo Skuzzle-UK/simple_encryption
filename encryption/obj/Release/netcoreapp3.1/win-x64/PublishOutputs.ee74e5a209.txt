@@ -1,2 +1,0 @@
-C:\Working Projects\Coding\encryption\encryption\bin\Release\netcoreapp3.1\publish\encryption.pdb
-C:\Working Projects\Coding\encryption\encryption\bin\Release\netcoreapp3.1\publish\encryption.exe
