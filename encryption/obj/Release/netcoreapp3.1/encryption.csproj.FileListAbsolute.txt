@@ -10,3 +10,4 @@ C:\Working Projects\Coding\encryption\encryption\obj\Release\netcoreapp3.1\encry
 C:\Working Projects\Coding\encryption\encryption\obj\Release\netcoreapp3.1\encryption.dll
 C:\Working Projects\Coding\encryption\encryption\obj\Release\netcoreapp3.1\encryption.pdb
 C:\Working Projects\Coding\encryption\encryption\obj\Release\netcoreapp3.1\encryption.genruntimeconfig.cache
+C:\Working Projects\Coding\encryption\encryption\obj\Release\netcoreapp3.1\encryption.csproj.AssemblyReference.cache
