@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
-namespace encryption
+
+namespace encription
 {
-    class Encrpytion
+    class encription
     {
         static void Main(string[] args)
         {
@@ -52,25 +54,35 @@ namespace encryption
             Console.WriteLine("Decoded string: " + str);
         }
 
-        private static string encrypt(string input)
+        public static string encrypt(string input)
         {
-            string hexed = ToHexString(input);
-            StringBuilder sb1 = new StringBuilder();
-            for (int i = hexed.Length; i > 0; i--)
-            {
-                sb1.Append(hexed.Substring(i - 1, 1));
-            }
-
-            hexed = ToHexString(sb1.ToString());
-            StringBuilder sb2 = new StringBuilder();
-            for (int i = hexed.Length; i > 0; i--)
-            {
-                sb2.Append(hexed.Substring(i - 1, 1));
-            }
-            return sb2.ToString();
+            return encryptAlg(input);
         }
 
-        private static string decrypt(string input)
+        public static string decrypt(string input)
+        {
+            return decryptAlg(input);
+        }
+
+        private static string encryptAlg(string input)
+        {
+            string hexed = ToHexString(input);
+            StringBuilder sb = new StringBuilder();
+            for (int i = hexed.Length; i > 0; i--)
+            {
+                sb.Append(hexed.Substring(i - 1, 1));
+            }
+
+            hexed = ToHexString(sb.ToString());
+            sb.Clear();
+            for (int i = hexed.Length; i > 0; i--)
+            {
+                sb.Append(hexed.Substring(i - 1, 1));
+            }
+            return sb.ToString();
+        }
+
+        private static string decryptAlg(string input)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = input.Length; i > 0; i--)
@@ -89,7 +101,7 @@ namespace encryption
             return FromHexString(sb.ToString());
         }
 
-        public static string ToHexString(string str)
+        private static string ToHexString(string str)
         {
             var sb = new StringBuilder();
 
@@ -102,7 +114,7 @@ namespace encryption
             return sb.ToString();
         }
 
-        public static string FromHexString(string hexString)
+        private static string FromHexString(string hexString)
         {
             var bytes = new byte[hexString.Length / 2];
             for (var i = 0; i < bytes.Length; i++)
