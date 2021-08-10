@@ -1,7 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//Created by and copyright of Nicholas Edward Bailey 10/08/2021
+//
+//Simple encription class
+//
+//Encryption requires a unique identifier / passphrase provided during encryption and required to decrypt.
+//Dont lose the identifier or you'll never get the data back.
+//
+//Pass data as a string by calling encrypt(data, identifier), returns a string of hexadecimal.
+//Get data back by passing the encrypted hexstring through decrypt(hexstring, identifier), returns the data as a string.
 
+using System;
+using System.Text;
 
 namespace encription
 {
@@ -41,30 +49,34 @@ namespace encription
         private static void enc()
         {
             Console.Clear();
+            Console.WriteLine("Input a unique identifier (Dont forget this as it is needed to decrypt: ");
+            string ident = Console.ReadLine();
             Console.Write("Input string to be encoded: ");
-            string str = encrypt(Console.ReadLine());
-            Console.WriteLine("Encoded string: " + str);
+            string str = encrypt(Console.ReadLine(), ident);
+            Console.WriteLine("Encrypted string: " + str);
         }
 
         private static void dec()
         {
             Console.Clear();
+            Console.WriteLine("Input unique identifier that was used during encryption: ");
+            string ident = Console.ReadLine();
             Console.Write("Input string to be decoded: ");
-            string str = decrypt(Console.ReadLine());
+            string str = decrypt(Console.ReadLine(), ident);
             Console.WriteLine("Decoded string: " + str);
         }
 
-        public static string encrypt(string input)
+        public static string encrypt(string input, string ident)
         {
-            return encryptAlg(input);
+            return encryptAlg(input, ident);
         }
 
-        public static string decrypt(string input)
+        public static string decrypt(string input, string ident)
         {
-            return decryptAlg(input);
+            return decryptAlg(input, ident);
         }
 
-        private static string encryptAlg(string input)
+        private static string encryptAlg(string input, string ident)
         {
             string hexed = ToHexString(input);
             StringBuilder sb = new StringBuilder();
@@ -72,7 +84,7 @@ namespace encription
             {
                 sb.Append(hexed.Substring(i - 1, 1));
             }
-
+            sb.Append(ident);
             hexed = ToHexString(sb.ToString());
             sb.Clear();
             for (int i = hexed.Length; i > 0; i--)
@@ -82,7 +94,7 @@ namespace encription
             return sb.ToString();
         }
 
-        private static string decryptAlg(string input)
+        private static string decryptAlg(string input, string ident)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = input.Length; i > 0; i--)
@@ -91,14 +103,23 @@ namespace encription
             }
 
             input = FromHexString(sb.ToString());
+            string check = input.Substring(input.Length - ident.Length, ident.Length);
+            if (check != ident)
+            {
+                return "Stop#Hacking!";
+            }
+            else
+            {
+                input = input.Substring(0, input.Length - ident.Length);
+            }
             sb.Clear();
 
             for (int i = input.Length; i > 0; i--)
             {
                 sb.Append(input.Substring(i - 1, 1));
             }
-
-            return FromHexString(sb.ToString());
+            input = FromHexString(sb.ToString());
+            return input;
         }
 
         private static string ToHexString(string str)
