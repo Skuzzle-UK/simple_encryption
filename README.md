@@ -14,6 +14,7 @@ Encryption that requires a unique identifier / passphrase provided during encryp
 ### Standalone
 Small console app is run via void main when compiled and executed, which can encrypt and decrypt using the algorithm.
 Standalone encryption.exe is included to test out the app or just to use it in the most straight forward way possible.
+*Release folder contains executable file*
 
 ---
 ### Ideas to play with encryption.exe
