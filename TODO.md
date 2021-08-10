@@ -1,0 +1,3 @@
+- Improve standalone app so that it doesn't exit after each conversion.
+- Fix typo in app where it uses the word encode rather than encrypt.
+- Look for further improvements to the algorithms.
