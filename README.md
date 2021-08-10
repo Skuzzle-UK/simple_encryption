@@ -2,6 +2,7 @@
 ## Simple encription class
 
 Encryption that requires a unique identifier / passphrase provided during encryption and required to decrypt.
+
 *Dont lose the identifier or you'll never get the data back.*
 
 ---
@@ -13,7 +14,9 @@ Encryption that requires a unique identifier / passphrase provided during encryp
 ---
 ### Standalone
 Small console app is run via void main when compiled and executed, which can encrypt and decrypt using the algorithm.
+
 Standalone encryption.exe is included to test out the app or just to use it in the most straight forward way possible.
+
 *Release folder contains executable file*
 
 ---
