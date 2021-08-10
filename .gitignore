@@ -1,4 +1,4 @@
-/encryption/bin
-/encryption/obj
-/encryption/Properties
-/.vs
+encryption/bin/
+encryption/obj/
+encryption/Properties/
+.vs/
