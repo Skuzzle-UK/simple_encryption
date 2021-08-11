@@ -1,3 +1,2 @@
-- Improve standalone app so that it doesn't exit after each conversion.
-- Fix typo in app where it uses the word encode rather than encrypt.
-- Look for further improvements to the algorithms.
+- Community to offer improvements
+- Find ethical hacker to attempt data retrieval

@@ -10,6 +10,7 @@
 
 using System;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace encription
 {
@@ -19,10 +20,18 @@ namespace encription
         {
         Start:
             Console.Clear();
+            Console.WriteLine("=================");
+            Console.WriteLine("Simple Encryption");
+            Console.WriteLine("=================");
+            Console.WriteLine("");
             Console.WriteLine("Select:");
-            Console.WriteLine("1. Encrypt");
-            Console.WriteLine("2. Decrypt");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("-----------------");
+            Console.WriteLine("    1. Encrypt");
+            Console.WriteLine("    2. Decrypt");
+            Console.WriteLine("    3. Exit");
+            Console.WriteLine("-----------------");
+            Console.WriteLine("");
+            Console.Write(">");
             int selection = Convert.ToInt32(Console.ReadLine());
             if (selection == 1)
             {
@@ -36,12 +45,10 @@ namespace encription
             {
                 goto Finish;
             }
-            else
-            {
-                goto Start;
-            }
-            Console.WriteLine("Press any key to close...");
+            Console.WriteLine("");
+            Console.WriteLine("Press any key to return to menu...");
             string close = Console.ReadLine();
+            goto Start;
         Finish:
             return;
         }
@@ -49,31 +56,64 @@ namespace encription
         private static void enc()
         {
             Console.Clear();
-            Console.WriteLine("Input a unique identifier (Dont forget this as it is needed to decrypt: ");
+            Console.WriteLine("Input a unique identifier/password/passphrase (Dont forget this as it is needed to decrypt)");
+            Console.Write(">");
             string ident = Console.ReadLine();
-            Console.Write("Input string to be encoded: ");
+            Console.Clear();
+            Console.WriteLine("Input string to be encrypted");
+            Console.Write(">");
             string str = encrypt(Console.ReadLine(), ident);
-            Console.WriteLine("Encrypted string: " + str);
+            Console.Clear();
+            Console.WriteLine("================");
+            Console.WriteLine("Encrypted String");
+            Console.WriteLine("================");
+            Console.WriteLine("");
+            Console.WriteLine(str);
         }
 
         private static void dec()
         {
             Console.Clear();
-            Console.WriteLine("Input unique identifier that was used during encryption: ");
+            Console.WriteLine("Input unique identifier/password/passphrase that was used during encryption");
+            Console.Write(">");
             string ident = Console.ReadLine();
-            Console.Write("Input string to be decoded: ");
+            Console.Clear();
+            Console.WriteLine("Input string to be decoded:");
+            Console.Write(">");
             string str = decrypt(Console.ReadLine(), ident);
-            Console.WriteLine("Decoded string: " + str);
+            Console.Clear();
+            Console.WriteLine("==============");
+            Console.WriteLine("Decoded String");
+            Console.WriteLine("==============");
+            Console.WriteLine("");
+            Console.WriteLine(str);
         }
 
         public static string encrypt(string input, string ident)
         {
+            ident = computeHash512(ident);
             return encryptAlg(input, ident);
         }
 
         public static string decrypt(string input, string ident)
         {
+            ident = computeHash512(ident);
             return decryptAlg(input, ident);
+        }
+
+        public static string computeHash512(string message)
+        {
+            byte[] sourceBytes = Encoding.Default.GetBytes(message);
+            byte[] hashBytes = null;
+
+            hashBytes = SHA512Managed.Create().ComputeHash(sourceBytes);
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.AppendFormat("{0:x2}", hashBytes[i]);
+            }
+            return sb.ToString();
         }
 
         private static string encryptAlg(string input, string ident)
@@ -96,30 +136,37 @@ namespace encription
 
         private static string decryptAlg(string input, string ident)
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = input.Length; i > 0; i--)
+            try
             {
-                sb.Append(input.Substring(i - 1, 1));
-            }
+                StringBuilder sb = new StringBuilder();
+                for (int i = input.Length; i > 0; i--)
+                {
+                    sb.Append(input.Substring(i - 1, 1));
+                }
 
-            input = FromHexString(sb.ToString());
-            string check = input.Substring(input.Length - ident.Length, ident.Length);
-            if (check != ident)
-            {
-                return "Stop#Hacking!";
-            }
-            else
-            {
-                input = input.Substring(0, input.Length - ident.Length);
-            }
-            sb.Clear();
+                input = FromHexString(sb.ToString());
+                string check = input.Substring(input.Length - ident.Length, ident.Length);
+                if (check != ident)
+                {
+                    return "!!!  *** *** Stop#Hacking *** *** !!!";
+                }
+                else
+                {
+                    input = input.Substring(0, input.Length - ident.Length);
+                }
+                sb.Clear();
 
-            for (int i = input.Length; i > 0; i--)
-            {
-                sb.Append(input.Substring(i - 1, 1));
+                for (int i = input.Length; i > 0; i--)
+                {
+                    sb.Append(input.Substring(i - 1, 1));
+                }
+                input = FromHexString(sb.ToString());
+                return input;
             }
-            input = FromHexString(sb.ToString());
-            return input;
+            catch
+            {
+                return "!!!  *** *** Stop#Hacking *** *** !!!";
+            }
         }
 
         private static string ToHexString(string str)
