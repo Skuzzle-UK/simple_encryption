@@ -12,8 +12,6 @@ using System;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace encryption
-{
     class encryption
     {
         static void Main(string[] args)
@@ -193,4 +191,3 @@ namespace encryption
             return Encoding.Unicode.GetString(bytes);
         }
     }
-}
