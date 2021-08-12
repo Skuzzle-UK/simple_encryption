@@ -12,9 +12,9 @@ using System;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace encription
+namespace encryption
 {
-    class encription
+    class encryption
     {
         static void Main(string[] args)
         {
