@@ -26,7 +26,8 @@ using System.Security.Cryptography;
             Console.WriteLine("-----------------");
             Console.WriteLine("    1. Encrypt");
             Console.WriteLine("    2. Decrypt");
-            Console.WriteLine("    3. Exit");
+            Console.WriteLine("    3. Generate SHA512 Hash string");
+            Console.WriteLine("    4. Exit");
             Console.WriteLine("-----------------");
             Console.WriteLine("");
             Console.Write(">");
@@ -40,6 +41,10 @@ using System.Security.Cryptography;
                 dec();
             }
             else if (selection == 3)
+            {
+                hash();
+            }
+        else if (selection == 4)
             {
                 goto Finish;
             }
@@ -87,7 +92,22 @@ using System.Security.Cryptography;
             Console.WriteLine(str);
         }
 
-        public static string encrypt(string input, string ident)
+
+    private static void hash()
+    {
+        Console.Clear();
+        Console.WriteLine("Input data to turn into SHA512 hash string");
+        Console.Write(">");
+        string str = computeHash512(Console.ReadLine());
+        Console.Clear();
+        Console.WriteLine("==============");
+        Console.WriteLine("Hashed String");
+        Console.WriteLine("==============");
+        Console.WriteLine("");
+        Console.WriteLine(str);
+    }
+
+    public static string encrypt(string input, string ident)
         {
             ident = computeHash512(ident);
             return encryptAlg(input, ident);
