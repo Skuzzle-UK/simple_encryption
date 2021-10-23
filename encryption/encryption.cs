@@ -106,6 +106,7 @@ using System.Security.Cryptography;
         Console.WriteLine("");
         Console.WriteLine(str);
     }
+    
 
     public static string encrypt(string input, string ident)
         {
